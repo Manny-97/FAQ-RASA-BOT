@@ -1,0 +1,16 @@
+version: '3.0'
+services:
+  rasa:
+    #image: rasa/rasa:3.6.0-full
+    image: awo_jimoh/faq-rasa-bot:3.5.2
+    ports:
+      - 5005:5005
+    volumes:
+      - ./:/app
+    command: run -m models --enable-api --cors "*" --debug
+  webchat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:80
